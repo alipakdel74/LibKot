@@ -16,10 +16,10 @@ class SnackBarBuilder(private var message: String) {
     private var snackBar: Snackbar? = null
 
     private var actionText = ""
-    private var snackFont = ""
     private var action: View.OnClickListener? = null
     private var duration = Snackbar.LENGTH_SHORT
     private var animation = Snackbar.ANIMATION_MODE_FADE
+    private var snackFont = AppTheme.SnackBar.fontSnackBar
 
     @ColorRes
     private var snackBackgroundColor = AppTheme.SnackBar.snackBackgroundColor
@@ -138,5 +138,6 @@ class SnackBarBuilder(private var message: String) {
             if (!isShown)
                 show()
         }
+
     }
 }

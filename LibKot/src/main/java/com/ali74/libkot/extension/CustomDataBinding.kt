@@ -1,6 +1,5 @@
 package com.ali74.libkot.extension
 
-import androidx.databinding.BindingAdapter
 import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
@@ -8,6 +7,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ali74.libkot.recyclerview.RVDividerItemDecoration
@@ -19,13 +19,11 @@ object CustomDataBinding {
 
     @JvmStatic
     @BindingAdapter("imageUrl")
-    fun AppCompatImageView.loadImage(Picture: String?) {
-        if (!Picture.isNullOrEmpty()) {
-            Glide.with(this.context).load(Picture)
-                .placeholder(android.R.drawable.ic_menu_gallery)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true).into(this)
-        }
+    fun AppCompatImageView.loadImage(Picture: Any) {
+        Glide.with(this.context).load(Picture)
+            .placeholder(android.R.drawable.ic_menu_gallery)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true).into(this)
     }
 
     @JvmStatic

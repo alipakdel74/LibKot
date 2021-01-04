@@ -19,6 +19,8 @@ object AppTheme {
 
         @ColorRes
         var snackActionBackgroundColor = R.color.white
+
+        var fontSnackBar = ""
     }
 
     fun setAppFont(context: Context, font: String) {
