@@ -27,6 +27,12 @@ object CustomDataBinding {
     }
 
     @JvmStatic
+    @BindingAdapter("textBackgroundColor")
+    fun View.textBackgroundColor(data: String) {
+        this.setBackgroundColor(Color.parseColor(data))
+    }
+
+    @JvmStatic
     @BindingAdapter("paintFlag")
     fun AppCompatTextView.setPaintFlag(use: Boolean = false) {
         if (use)
