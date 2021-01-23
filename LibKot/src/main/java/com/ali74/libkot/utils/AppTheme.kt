@@ -9,7 +9,7 @@ object AppTheme {
 
     object SnackBar {
         @ColorRes
-        var snackMessageColor = R.color.white
+        var snackMessageTextColor = R.color.white
 
         @ColorRes
         var snackBackgroundColor = R.color.black

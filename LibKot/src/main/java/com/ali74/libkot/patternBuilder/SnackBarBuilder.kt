@@ -5,43 +5,42 @@ import android.graphics.Typeface
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.ali74.libkot.R
 import com.ali74.libkot.utils.AppTheme
 import com.google.android.material.snackbar.Snackbar
 
-class SnackBarBuilder(private var message: String) {
+class SnackBarBuilder {
 
     private var snackBar: Snackbar? = null
 
+    private var message = ""
     private var actionText = ""
     private var action: View.OnClickListener? = null
     private var duration = Snackbar.LENGTH_SHORT
     private var animation = Snackbar.ANIMATION_MODE_FADE
     private var snackFont = AppTheme.SnackBar.fontSnackBar
 
-    @ColorRes
-    private var snackBackgroundColor = AppTheme.SnackBar.snackBackgroundColor
+    private var messageTextColor = 0
+    private var actionTextColor = 0
+    private var actionBackgroundColor = 0
 
-    @ColorRes
-    private var snackMessageColor = AppTheme.SnackBar.snackMessageColor
+    fun setMessage(
+        message: String,
+        @ColorRes textColor: Int = AppTheme.SnackBar.snackMessageTextColor
+    ) = apply {
+        this.message = message
+        messageTextColor = textColor
+    }
 
-    @ColorRes
-    private var snackActionTextColor = AppTheme.SnackBar.snackActionTextColor
-
-    @ColorRes
-    private var snackActionBackgroundColor = AppTheme.SnackBar.snackActionBackgroundColor
-
-    fun setMessage(message: String, @DrawableRes color: Int = AppTheme.SnackBar.snackMessageColor) =
-        apply {
-            this.message = message
-            snackMessageColor = color
-        }
-
-    fun setActionText(text: String = "", @DrawableRes color: Int) = apply {
+    fun setActionText(
+        text: String = "",
+        @ColorRes textColor: Int = AppTheme.SnackBar.snackActionTextColor,
+        @ColorRes backgroundColor: Int = AppTheme.SnackBar.snackActionBackgroundColor,
+    ) = apply {
         actionText = text
-        snackActionTextColor = color
+        actionTextColor = textColor
+        actionBackgroundColor = backgroundColor
     }
 
     fun setAction(action: View.OnClickListener? = null) = apply {
@@ -66,11 +65,21 @@ class SnackBarBuilder(private var message: String) {
                 activity.findViewById(android.R.id.content), message, duration
             ).setAction(actionText, action)
                 .setAnimationMode(animation)
-                .setBackgroundTint(ContextCompat.getColor(activity, snackBackgroundColor))
+                .setBackgroundTint(
+                    ContextCompat.getColor(
+                        activity,
+                        AppTheme.SnackBar.snackBackgroundColor
+                    )
+                )
         else Snackbar.make(
             activity.findViewById(android.R.id.content), message, duration
         ).setAnimationMode(animation)
-            .setBackgroundTint(ContextCompat.getColor(activity, snackBackgroundColor))
+            .setBackgroundTint(
+                ContextCompat.getColor(
+                    activity,
+                    AppTheme.SnackBar.snackBackgroundColor
+                )
+            )
 
         snackBar?.apply {
             val text: TextView = view.findViewById(R.id.snackbar_text)
@@ -82,15 +91,10 @@ class SnackBarBuilder(private var message: String) {
                     Typeface.BOLD
                 )
             }
-            action.setTextColor(ContextCompat.getColor(activity, snackActionTextColor))
-            action.setBackgroundColor(
-                ContextCompat.getColor(
-                    activity,
-                    snackActionBackgroundColor
-                )
-            )
+            action.setTextColor(ContextCompat.getColor(activity, actionTextColor))
+            action.setBackgroundColor(ContextCompat.getColor(activity, actionBackgroundColor))
 
-            text.setTextColor(ContextCompat.getColor(activity, snackMessageColor))
+            text.setTextColor(ContextCompat.getColor(activity, messageTextColor))
 
         }
 
@@ -106,11 +110,21 @@ class SnackBarBuilder(private var message: String) {
                 view, message, duration
             ).setAction(actionText, action)
                 .setAnimationMode(animation)
-                .setBackgroundTint(ContextCompat.getColor(view.context, snackBackgroundColor))
+                .setBackgroundTint(
+                    ContextCompat.getColor(
+                        view.context,
+                        AppTheme.SnackBar.snackBackgroundColor
+                    )
+                )
         else Snackbar.make(
             view, message, duration
         ).setAnimationMode(animation)
-            .setBackgroundTint(ContextCompat.getColor(view.context, snackBackgroundColor))
+            .setBackgroundTint(
+                ContextCompat.getColor(
+                    view.context,
+                    AppTheme.SnackBar.snackBackgroundColor
+                )
+            )
 
         snackBar?.apply {
             val text: TextView = view.findViewById(R.id.snackbar_text)
@@ -122,15 +136,10 @@ class SnackBarBuilder(private var message: String) {
                     Typeface.BOLD
                 )
             }
-            action.setTextColor(ContextCompat.getColor(view.context, snackActionTextColor))
-            action.setBackgroundColor(
-                ContextCompat.getColor(
-                    view.context,
-                    snackActionBackgroundColor
-                )
-            )
+            action.setTextColor(ContextCompat.getColor(view.context, actionTextColor))
+            action.setBackgroundColor(ContextCompat.getColor(view.context, actionBackgroundColor))
 
-            text.setTextColor(ContextCompat.getColor(view.context, snackMessageColor))
+            text.setTextColor(ContextCompat.getColor(view.context, messageTextColor))
 
         }
 
