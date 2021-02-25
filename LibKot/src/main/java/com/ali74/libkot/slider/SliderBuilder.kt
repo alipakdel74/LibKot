@@ -111,7 +111,9 @@ class SliderBuilder<T>(private val context: Context) {
         val position = sliderManager.findFirstCompletelyVisibleItemPosition()
         if (sliderSize.get() != 0 && position != RecyclerView.NO_POSITION) {
             recyclerView?.apply {
-                smoothScrollToPosition(position + 1)
+                if (position == models.size -1)
+                    smoothScrollToPosition(0)
+                else smoothScrollToPosition(position + 1)
             }
         }
         schedule()

@@ -30,7 +30,7 @@ class SliderAdapter<T>(
         slider.sliderData(models[position % models.size], holder as SliderAdapter<*>.ImageHolder)
     }
 
-    override fun getItemCount(): Int = if (models.size > 1) Int.MAX_VALUE else models.size
+    override fun getItemCount(): Int = models.size
 
     inner class ImageHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val cardSlider0: MaterialCardView = view.findViewById(R.id.cardSlider0)

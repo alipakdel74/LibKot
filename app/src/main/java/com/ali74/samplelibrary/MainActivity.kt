@@ -25,11 +25,14 @@ class MainActivity : AppCompatActivity() {
         SliderBuilder<String>(this)
             .setModels(models)
             .setRecyclerView(findViewById(R.id.txtTest))
-            .setItemWidth(300)
             .setAutoScroll(true)
             .setRadius(3f)
             .setTimer(3000)
-            .useCarouselLayoutManager(true)
+            .useCarouselLayoutManager(false)
+            .setItemHeight(120)
+            .setReverseLayout(true)
+            .setItemElevation(3F)
+            .setMarginItem(2)
             .create(object : SliderAdapter.SliderHolder<String> {
                 override fun sliderData(data: String, view: SliderAdapter<*>.ImageHolder) {
                     Glide.with(this@MainActivity)
