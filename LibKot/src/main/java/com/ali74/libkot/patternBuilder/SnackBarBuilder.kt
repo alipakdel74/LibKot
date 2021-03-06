@@ -21,9 +21,9 @@ class SnackBarBuilder {
     private var animation = Snackbar.ANIMATION_MODE_FADE
     private var snackFont = AppTheme.SnackBar.fontSnackBar
 
-    private var messageTextColor = 0
-    private var actionTextColor = 0
-    private var actionBackgroundColor = 0
+    private var messageTextColor = AppTheme.SnackBar.snackMessageTextColor
+    private var actionTextColor = AppTheme.SnackBar.snackActionTextColor
+    private var actionBackgroundColor = AppTheme.SnackBar.snackActionBackgroundColor
 
     fun setMessage(
         message: String,
@@ -104,24 +104,24 @@ class SnackBarBuilder {
         }
     }
 
-    fun show(view: View) {
+    fun show(v: View) {
         snackBar = if (action != null)
             Snackbar.make(
-                view, message, duration
+                v, message, duration
             ).setAction(actionText, action)
                 .setAnimationMode(animation)
                 .setBackgroundTint(
                     ContextCompat.getColor(
-                        view.context,
+                        v.context,
                         AppTheme.SnackBar.snackBackgroundColor
                     )
                 )
         else Snackbar.make(
-            view, message, duration
+            v, message, duration
         ).setAnimationMode(animation)
             .setBackgroundTint(
                 ContextCompat.getColor(
-                    view.context,
+                    v.context,
                     AppTheme.SnackBar.snackBackgroundColor
                 )
             )
